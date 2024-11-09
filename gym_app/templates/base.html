@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gimnàs App</title>
+    <!-- Inclou la llibreria CSS de Bootstrap per a estils i disseny responsiu. -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <style>
+        input {
+            width: 100%;
+        }
+    </style>
+
+    <!-- Utilitza la classe 'navbar-dark' i 'bg-dark' per a un fons negre i text blanc. -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Gimnàs App</a>
+        <ul class="navbar-nav flex-row ml-auto">
+            <!-- Condicional per a mostrar opcions diferents segons si l'usuari està autenticat o no. -->
+            {% if user.is_authenticated %}
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'home' %}">Inici</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'editar_perfil' %}">Editar perfil</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'logout' %}">Tancar Sessió</a>
+                </li>
+            {% else %}
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'login' %}">Iniciar Sessió</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'register' %}">Registrar-se</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Mostra missatges -->
+    <div class="container mt-3">
+        {% if messages %}
+            <div class="alert alert-info">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="container mt-4">
+        {% block content %} {% endblock %}
+    </div>
+
+    <!-- Inclou les llibreries JavaScript i dependències necessàries de Bootstrap. -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
