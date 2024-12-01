@@ -84,7 +84,6 @@ def crear_rutina(request):
                 messages.error(request, "Ja existeix una rutina amb aquest nom.")
                 return render(request, 'gym_app/crear_rutina.html', {'form': form})
 
-            # Crear la rutina sin necesidad de especificar el horario
             rutina = form.save(commit=False)
             rutina.entrenador = request.user 
             rutina.save()
@@ -97,7 +96,6 @@ def crear_rutina(request):
         form = CrearRutinaForm()
     return render(request, 'gym_app/crear_rutina.html', {'form': form})
 
-# nombre unique 
 @login_required
 def horari(request):
 
@@ -161,14 +159,12 @@ def asignar_rutina(request):
             dia, hora = key.split('_')
             
             try:
-                # Intenta obtener el Horari existente
                 horari, created = Horari.objects.get_or_create(
                     dia=dia, 
                     hora=hora,
                     defaults={'rutina_id': rutina_id}
                 )
                 
-                # Si no fue creado, actualiza la rutina
                 if not created:
                     horari.rutina_id = rutina_id
                     horari.save()

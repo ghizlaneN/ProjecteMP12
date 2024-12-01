@@ -60,7 +60,6 @@
 <script>
     document.querySelectorAll('.show-form').forEach(button => {
         button.addEventListener('click', function() {
-            // Close all open forms first
             document.querySelectorAll('.form-container').forEach(container => {
                 container.classList.add('d-none');
             });
@@ -68,14 +67,12 @@
             var targetFormId = this.getAttribute('data-target');
             var formContainer = document.getElementById('form-container-' + targetFormId.split('-')[1]); 
 
-            // Toggle the form container
             if (formContainer) {
                 formContainer.classList.toggle('d-none');
             }
         });
     });
 
-    // Close forms when clicking outside
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.position-relative')) {
             document.querySelectorAll('.form-container').forEach(container => {

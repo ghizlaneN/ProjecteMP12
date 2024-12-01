@@ -17,18 +17,15 @@
             {% endfor %}
             
             {% if field.name == 'exercicis' or field.name == 'recomenacions' %}
-                <!-- Campo textarea con clases Bootstrap aplicadas directamente -->
                 <div class="form-floating">
                     <textarea class="form-control" id="{{ field.id_for_label }}" name="{{ field.name }}" rows="5">{{ field.value|default:"" }}</textarea>
                     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 </div>
             {% elif field.name == 'dia' or field.name == 'hora' or field.name == 'durada' %}
-                <!-- Campos dia, hora y durada en una sola fila -->
                 <div class="col-md-4 d-inline-block">
                     {{ field }}
                 </div>
             {% else %}
-                <!-- Para otros campos, los mostramos con el estilo predeterminado -->
                 {{ field }}
             {% endif %}
         </div>

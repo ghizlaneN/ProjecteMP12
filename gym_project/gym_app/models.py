@@ -44,8 +44,7 @@ class Rutina(models.Model):
         return self.nom
     
     def delete(self, *args, **kwargs):
-        # Eliminar manualmente los horarios asociados a esta rutina
-        self.horaris.all().delete()  # Esto elimina todos los horarios relacionados
+        self.horaris.all().delete()
         super(Rutina, self).delete(*args, **kwargs)
     
 class Horari(models.Model):
@@ -74,11 +73,3 @@ class Horari(models.Model):
         
     def __str__(self):
         return f'{self.dia} {self.hora}'
-    
-    @staticmethod
-    def get_item(horario_dict, dia, hora):
-        try:
-            key = f"{dia}_{hora}"
-            return horario_dict.get(dia, {}).get(key, None)
-        except KeyError:
-            return None
