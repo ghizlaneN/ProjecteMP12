@@ -1,3 +1,0 @@
-# Projecte
-# Projecte
-# ProjecteMP12
