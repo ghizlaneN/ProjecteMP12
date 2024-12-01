@@ -1,0 +1,47 @@
+<!-- Herència de la plantilla base.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Inicia Sessió</h2>
+                </div>
+                <div class="card-body">
+                    <!-- Formulari de login -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- Iterem per cada camp del formulari -->
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <!-- Etiqueta del camp -->
+                                <label for="{{ field.id_for_label }}" class="form-label">
+                                    {{ field.label }}
+                                </label><br>
+                                <!-- Mostrar errors del camp -->
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                                <!-- Camp de formulari -->
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        <!-- Botó d'enviar -->
+                        <div class="d-grid">
+                            <button class="btn btn-dark" type="submit" class="btn btn-primary">Iniciar Sessió</button>
+                        </div>
+                    </form>
+                    <!-- Enllaç per registrar-se -->
+                    <div class="text-center mt-3">
+                        <p>No tens compte? <a href="{% url 'register' %}">Registra't</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

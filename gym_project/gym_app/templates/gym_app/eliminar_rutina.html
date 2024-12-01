@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ rutina.nom }}</h2>
+  <p>Descripció: {{ rutina.descripcio }}.</p>
+  <p>Exercicis: {{ rutina.exercicis }}.</p>
+  {% if rutina.recomenacions %}
+      <p>Recomanacions: {{ rutina.recomenacions }}.</p>
+  {% else %}
+      <p>Recomanacions no disponibles.</p>
+  {% endif %}
+
+  <div class="alert alert-warning" role="alert">
+    Aquesta acció eliminarà permanentment la rutina i tots els seus exercicis. ¿Estàs segur?
+  </div>
+  
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">Sí, eliminar</button>
+    <a href="{% url 'llistar_rutines' %}" class="btn btn-outline-secondary">Cancelar</a>
+  </form>
+{% endblock %}

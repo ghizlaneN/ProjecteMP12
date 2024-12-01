@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">Crear Rutina</h2>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">
+                {{ field.label }}
+            </label><br>
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            
+            {% if field.name == 'exercicis' or field.name == 'recomenacions' %}
+                <!-- Campo textarea con clases Bootstrap aplicadas directamente -->
+                <div class="form-floating">
+                    <textarea class="form-control" id="{{ field.id_for_label }}" name="{{ field.name }}" rows="5">{{ field.value|default:"" }}</textarea>
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                </div>
+            {% elif field.name == 'dia' or field.name == 'hora' or field.name == 'durada' %}
+                <!-- Campos dia, hora y durada en una sola fila -->
+                <div class="col-md-4 d-inline-block">
+                    {{ field }}
+                </div>
+            {% else %}
+                <!-- Para otros campos, los mostramos con el estilo predeterminado -->
+                {{ field }}
+            {% endif %}
+        </div>
+    {% endfor %}
+    
+    <div class="d-grid">
+        <button class="btn btn-dark" type="submit">Crear Rutina</button>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Descripció</th>
+                <th>Accions</th>
+                <th></th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rutina in llista_rutines %}
+                 <tr>
+                    <td>{{ rutina.nom }}</td>
+                    <td>{{ rutina.descripcio }}</td>
+                    <td>
+                        <a href="{% url "eliminar_rutina" rutina.nom %}" class="btn btn-outline-danger">Eliminar</a>
+                    </td>
+                    <td>
+                        <a href="{% url "previsualitzar" rutina.nom %}" class="btn btn-outline-success">Previsualitzar</a>
+                    </td>
+                    <td>
+                        <a href="{% url "editar_rutina" rutina.nom %}" class="btn btn-outline-info">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
