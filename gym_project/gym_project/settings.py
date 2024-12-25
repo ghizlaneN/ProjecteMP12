@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Afegim la aplicació 'gym_app' a l'aplicació de Django
     'gym_app',
+    'trainer_app',
+    'user_app',
 ]
 
 MIDDLEWARE = [

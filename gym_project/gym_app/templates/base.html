@@ -17,26 +17,41 @@
         body {
             background-color: lightgray !important; 
         }
+
+        input, textarea {
+            background-color: lightgray !important; 
+            border-color: black !important; 
+        }
     </style>
 
     <!-- Utilitza la classe 'navbar-dark' i 'bg-dark' per a un fons negre i text blanc. -->
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}">Gimnàs App</a>
+        <a class="navbar-brand" href="{% url 'home' %}">GYM APP</a>
         <ul class="navbar-nav flex-row ml-auto">
             <!-- Condicional per a mostrar opcions diferents segons si l'usuari està autenticat o no. -->
             {% if user.is_authenticated %}
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{% url 'home' %}">Inici</a>
                 </li>
+
+
                 {% if user.is_authenticated and user.role == 'trainer' %}
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{% url 'llistar_rutines' %}">Llistar Rutines</a>
+                        <a class="nav-link" href="{% url 'trainer:llistar_rutines' %}">Llistar Rutines</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{% url 'horari' %}">Horari</a>
+                        <a class="nav-link" href="{% url 'trainer:horari' %}">Horari</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{% url 'crear_rutina' %}">Crear Rutina</a>
+                        <a class="nav-link" href="{% url 'trainer:crear_rutina' %}">Crear Rutina</a>
+                    </li>
+
+                {% elif user.is_authenticated and user.role == 'user' %}
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="{% url 'user:horari_classes' %}">Horari Classes</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="{% url 'user:quota' %}">Quota</a>
                     </li>
 
                 {% endif %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<h1>Horari Classes</h1><br>
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            {% comment %} Columna Hora {% endcomment %}
+            <th class="text-center" style="width: 10px">Hora</th>
+            {% for dia,data in dates.items %}
+            <th class="text-center">
+                <div>{{ dia }}</div>
+                <div class="text-muted">{{ data }}</div>
+            </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for hora in hores %}
+        <tr>
+            <td>{{ hora }}</td>
+            {% for dia, rutines in horari.items %}
+            <td class="p-0" style="height: 50px;"> 
+                {% with key=dia|add:"_"|add:hora %}
+                    {% if key in rutines %}
+                    {% comment %} Si hi ha una rutina asignada a aquesta hora i dia  {% endcomment %}
+                        <div class="position-relative w-100 h-100">
+                            {% if inscrits|get_item:key %}
+                                {% comment %} Si l'usuari esta inscrit mostra el boto de Inscrit {% endcomment %}
+                                <button class="btn btn-success btn-sm show-form w-100 h-100" data-target="form-{{ key }}">Inscrit {{rutines|get_item:key|get_item:'nom'}} </button>
+                                <div id="form-container-{{ key }}" class="form-container d-none position-absolute top-100 start-0 w-30 h-150 bg-dark text-white p-3 shadow-lg border border-dark" style="z-index: 1050; border-radius: 10px;">
+                                    {% comment %} Formulari per desinscriure's de la clase  {% endcomment %}
+                                    <form method="POST" action="{% url 'user:desinscriure_me' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="horari_id" value="{{ rutines|get_item:key|get_item:'horari_id' }}">
+                                        <button type="submit" class="btn btn-danger btn-sm w-100">desinscriure'm</button>
+                                    </form>
+                                </div>
+                            {% else %}
+                            {% comment %} Si l'usuari no esta inscrit, mostrar el boto per inscriure's {% endcomment %}
+                                <div class="position-relative w-100 h-100">
+                                    <button class="btn btn-secondary btn-sm show-form w-100 h-100" data-target="form-{{ key }}">
+                                        {{ rutines|get_item:key|get_item:"nom" }}
+                                    </button>
+                                    <div id="form-container-{{ key }}" class="form-container d-none position-absolute top-100 start-0 w-200 h-200 bg-dark text-white p-3 shadow-lg border border-dark" style="z-index: 1050; border-radius: 10px;">
+                                        {% comment %} Formulari per a inscriure's a la classe {% endcomment %}
+                                        <form method="POST" action="{% url 'user:inscriure_me' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="horari_id" value="{{ rutines|get_item:key|get_item:'horari_id' }}">
+                                            <button type="submit" class="btn btn-secondary btn-sm w-100">inscriure-me</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                    {% comment %} Si no hi ha rutina mostra un missatge "Sense Clase" {% endcomment %}
+                        <div class="btn w-100 h-100" style="background-color: #cccccc">
+                            <span class="text-muted">Sense classe</span>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </td>
+            {% endfor %}
+        </tr>   
+        {% endfor %}
+    </tbody>
+</table>    
+
+
+
+
+<script>
+    document.querySelectorAll('.show-form').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.form-container').forEach(container => {
+                container.classList.add('d-none');
+            });
+
+            var targetFormId = this.getAttribute('data-target');
+            var formContainer = document.getElementById('form-container-' + targetFormId.split('-')[1]);
+
+            if (formContainer) {
+                formContainer.classList.toggle('d-none');
+            }
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.position-relative')) {
+            document.querySelectorAll('.form-container').forEach(container => {
+                container.classList.add('d-none');
+            });
+        }
+    });
+</script>
+{% endblock %}

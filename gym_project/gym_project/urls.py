@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Afegim la URL de l'aplicació 'gym_app' al fitxer urls.py
     path('', include('gym_app.urls')),
+     path('trainer/', include('trainer_app.urls')),
+     path('user/',include('user_app.urls')),
 ]

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, Rutina
+from .models import User
 
 # Definim el formulari per registrar un nou usuari
 class UserRegistrationForm(UserCreationForm):
@@ -24,15 +24,15 @@ class EditProfileForm(forms.ModelForm):
         model = User
         fields = ['username','email', 'first_name', 'last_name']
         
-class CrearRutinaForm(forms.ModelForm):
-    class Meta:   
-        model = Rutina
-        fields = ['nom', 'descripcio', 'exercicis', 'recomenacions']
+# class CrearRutinaForm(forms.ModelForm):
+#     class Meta:   
+#         model = Rutina
+#         fields = ['nom', 'descripcio', 'exercicis', 'recomenacions']
         
-class EditRutinaForm(forms.ModelForm):
-    class Meta:
-        model = Rutina
-        fields = ['descripcio', 'exercicis', 'recomenacions']
+# class EditRutinaForm(forms.ModelForm):
+#     class Meta:
+#         model = Rutina
+#         fields = ['descripcio', 'exercicis', 'recomenacions']
         
-class HorariForm(forms.Form):
-    rutinas = forms.ModelChoiceField(queryset=Rutina.objects.all(), required=False, empty_label="Selecciona rutina")
+# class HorariForm(forms.Form):
+#     rutinas = forms.ModelChoiceField(queryset=Rutina.objects.all(), required=False, empty_label="Selecciona rutina")

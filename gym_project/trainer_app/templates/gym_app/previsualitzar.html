@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ rutina.nom }}</h2>
+    <p>Descripció: {{ rutina.descripcio }}.</p>
+    <p>Exercicis: {{ rutina.exercicis }}.</p>
+    {% if rutina.recomenacions %}
+        <p>Recomanacions: {{ rutina.recomenacions }}.</p>
+    {% else %}
+        <p>Recomanacions no disponibles.</p>
+    {% endif %}
+
+    <a href="{% url 'trainer:llistar_rutines' %}" class="btn btn-outline-secondary">Tornar enrere</a>
+{% endblock %}
