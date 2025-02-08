@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<section class="vh-50">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Edit user image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form method="POST">
+          <h2 class="mt-1 mb-5 pb-1 text-center">Editar Usuari</h2>
+          {% csrf_token %}
+          
+          {% for field in form %}
+          <div class="form-outline mb-4">
+            {% if field.field.widget.input_type == 'select' %}
+                {{ field|add_class:"form-select form-control border-dark bg-transparent appearance-none" }}
+            {% else %}
+                {{ field|add_class:"form-control" }}
+            {% endif %}
+            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {% for error in field.errors %}
+            <div class="alert alert-danger mt-2">{{ error }}</div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+          
+          <button type="submit" class="btn btn-dark btn-lg btn-block">Actualitzar Usuari</button>
+          
+          <a href="{% url 'admin_app:llistar_usuaris' %}" class="btn btn-outline-secondary btn-lg btn-block mt-3">Tornar Enrere</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

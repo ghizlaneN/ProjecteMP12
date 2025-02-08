@@ -1,47 +1,43 @@
-<!-- Herència de la plantilla base.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="text-center">Inicia Sessió</h2>
-                </div>
-                <div class="card-body">
-                    <!-- Formulari de login -->
-                    <form method="post">
-                        {% csrf_token %}
-                        <!-- Iterem per cada camp del formulari -->
-                        {% for field in form %}
-                            <div class="mb-3">
-                                <!-- Etiqueta del camp -->
-                                <label for="{{ field.id_for_label }}" class="form-label">
-                                    {{ field.label }}
-                                </label><br>
-                                <!-- Mostrar errors del camp -->
-                                {% for error in field.errors %}
-                                    <div class="alert alert-danger">
-                                        {{ error }}
-                                    </div>
-                                {% endfor %}
-                                <!-- Camp de formulari -->
-                                {{ field }}
-                            </div>
-                        {% endfor %}
-                        <!-- Botó d'enviar -->
-                        <div class="d-grid">
-                            <button class="btn btn-dark" type="submit" class="btn btn-primary">Iniciar Sessió</button>
-                        </div>
-                    </form>
-                    <!-- Enllaç per registrar-se -->
-                    <div class="text-center mt-3">
-                        <p>No tens compte? <a href="{% url 'register' %}">Registra't</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="vh-50">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Login image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <style>
+            .divider:after,
+            .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+            }
+        </style>
+        <form method="post">
+        <h2 class="mt-1 mb-5 pb-1">Login</h2>
+          {% csrf_token %}
+          
+          {% for field in form %}
+          <div class="form-outline mb-4">
+            {{ field }}
+            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {% for error in field.errors %}
+            <div class="alert alert-danger mt-2">{{ error }}</div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+          
+          <button type="submit" class="btn btn-dark btn-lg btn-block">Iniciar Sessió</button>
+          
+          
+        </form>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 {% endblock %}

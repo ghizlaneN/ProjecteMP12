@@ -19,10 +19,10 @@ def quota(request):
             quota_exist = Quotes.objects.filter(user_id=request.user.id).first()
 
             # Si la quota existeix, actualitzem la descripció
-            if quota_exist:
-                quota_exist.quote_description = form.cleaned_data['quote_description']
-                quota_exist.save()
-                messages.success(request, 'La quota s\'ha actualitzat correctament')
+            if quota_exist and request.user.role != 'admin':
+                # quota_exist.quote_description = form.cleaned_data['quote_description']
+                # quota_exist.save()
+                messages.error(request, 'Nomes l\'administrador pot modificar la quota')
             else:          
                 # Si la quota no existeix, la creem
                 quota = form.save(commit=False)
@@ -33,7 +33,7 @@ def quota(request):
         else:
             messages.error(request, 'No s\'ha pogut guardar la quota.')
     else:
-        form = QuotesForm(request.POST)
+        form = QuotesForm()
     return render(request, 'quota.html', {'form': form})
 
 
@@ -91,7 +91,7 @@ def horari_classes(request):
         for dia, rutines in horari.items():
             for key, rutina in rutines.items():
                 if str(rutina['horari_id']) == str(h_c.horari_id):
-                    inscrits[key] = usuari_inscrit   
+                    inscrits[key] = usuari_inscrit  
 
     return render(request, 'horari_classes.html', {
         'horari_classes': horari_classes, 

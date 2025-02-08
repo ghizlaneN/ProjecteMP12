@@ -1,0 +1,413 @@
+[{
+  "_id": {
+    "$oid": "6723a198449c9cf5cdfd492d"
+  },
+  "name": "django_migrations",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 51
+  },
+  "fields": {
+    "app": {
+      "type_code": "string"
+    },
+    "applied": {
+      "type_code": "date"
+    },
+    "id": {
+      "type_code": "long"
+    },
+    "name": {
+      "type_code": "string"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6723a198449c9cf5cdfd4932"
+  },
+  "name": "django_content_type",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 11
+  },
+  "fields": {
+    "app_label": {
+      "type_code": "string"
+    },
+    "id": {
+      "type_code": "int"
+    },
+    "model": {
+      "type_code": "string"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6723a198449c9cf5cdfd4941"
+  },
+  "name": "auth_permission",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 44
+  },
+  "fields": {
+    "codename": {
+      "type_code": "string"
+    },
+    "content_type_id": {
+      "type_code": "int"
+    },
+    "id": {
+      "type_code": "int"
+    },
+    "name": {
+      "type_code": "string"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6723a198449c9cf5cdfd4947"
+  },
+  "name": "auth_group",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 0
+  },
+  "fields": {
+    "id": {
+      "type_code": "int"
+    },
+    "name": {
+      "type_code": "string"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6723a198449c9cf5cdfd494c"
+  },
+  "name": "auth_group_permissions",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 0
+  },
+  "fields": {
+    "group_id": {
+      "type_code": "int"
+    },
+    "id": {
+      "type_code": "long"
+    },
+    "permission_id": {
+      "type_code": "int"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6723a198449c9cf5cdfd497c"
+  },
+  "name": "users",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 58
+  },
+  "fields": {
+    "date_joined": {
+      "type_code": "date"
+    },
+    "email": {
+      "type_code": "string"
+    },
+    "first_name": {
+      "type_code": "string"
+    },
+    "id": {
+      "type_code": "long"
+    },
+    "is_active": {
+      "type_code": "bool"
+    },
+    "is_staff": {
+      "type_code": "bool"
+    },
+    "is_superuser": {
+      "type_code": "bool"
+    },
+    "last_login": {
+      "type_code": "date"
+    },
+    "last_name": {
+      "type_code": "string"
+    },
+    "password": {
+      "type_code": "string"
+    },
+    "role": {
+      "type_code": "string"
+    },
+    "username": {
+      "type_code": "string"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6723a198449c9cf5cdfd4981"
+  },
+  "name": "users_groups",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 0
+  },
+  "fields": {
+    "group_id": {
+      "type_code": "int"
+    },
+    "id": {
+      "type_code": "long"
+    },
+    "user_id": {
+      "type_code": "long"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6723a198449c9cf5cdfd4986"
+  },
+  "name": "users_user_permissions",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 0
+  },
+  "fields": {
+    "id": {
+      "type_code": "long"
+    },
+    "permission_id": {
+      "type_code": "int"
+    },
+    "user_id": {
+      "type_code": "long"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6723a198449c9cf5cdfd4994"
+  },
+  "name": "django_admin_log",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 0
+  },
+  "fields": {
+    "action_flag": {
+      "type_code": "int"
+    },
+    "action_time": {
+      "type_code": "date"
+    },
+    "change_message": {
+      "type_code": "string"
+    },
+    "content_type_id": {
+      "type_code": "int"
+    },
+    "id": {
+      "type_code": "int"
+    },
+    "object_id": {
+      "type_code": "string"
+    },
+    "object_repr": {
+      "type_code": "string"
+    },
+    "user_id": {
+      "type_code": "long"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6723a199449c9cf5cdfd49a4"
+  },
+  "name": "django_session",
+  "fields": {
+    "expire_date": {
+      "type_code": "date"
+    },
+    "session_data": {
+      "type_code": "string"
+    },
+    "session_key": {
+      "type_code": "string"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "67321705b30b7d99f6ea82cf"
+  },
+  "name": "gym_app_rutina",
+  "auto": {
+    "field_names": [
+      "id"
+    ],
+    "seq": 2
+  },
+  "fields": {
+    "descripcio": {
+      "type_code": "string"
+    },
+    "durada": {
+      "type_code": "int"
+    },
+    "exercicis": {
+      "type_code": "string"
+    },
+    "id": {
+      "type_code": "long"
+    },
+    "nom": {
+      "type_code": "string"
+    },
+    "recomenacions": {
+      "type_code": "string"
+    },
+    "dia": {
+      "type_code": null
+    },
+    "hora": {
+      "type_code": null
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "675b3011cbdbeda0eb21c1ea"
+  },
+  "name": "rutines",
+  "auto": {
+    "field_names": [
+      "rutina_id"
+    ],
+    "seq": 12
+  },
+  "fields": {
+    "descripcio": {
+      "type_code": "string"
+    },
+    "entrenador_id": {
+      "type_code": "long"
+    },
+    "exercicis": {
+      "type_code": "string"
+    },
+    "nom": {
+      "type_code": "string"
+    },
+    "recomenacions": {
+      "type_code": "string"
+    },
+    "rutina_id": {
+      "type_code": "objectId"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6768832a97c468031fc9593d"
+  },
+  "name": "quotes",
+  "auto": {
+    "field_names": [
+      "quote_id",
+      "quote_id",
+      "quote_id"
+    ],
+    "seq": 4
+  },
+  "fields": {
+    "quote_description": {
+      "type_code": "string"
+    },
+    "quote_id": {
+      "type_code": "objectId"
+    },
+    "user_id_id": {
+      "type_code": "long"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6768832a97c468031fc95948"
+  },
+  "name": "horari_classes_usuari_inscrit",
+  "auto": {
+    "field_names": [
+      "id",
+      "id",
+      "id"
+    ],
+    "seq": 58
+  },
+  "fields": {
+    "horari_classes_id": {
+      "type_code": "objectId"
+    },
+    "id": {
+      "type_code": "long"
+    },
+    "user_id": {
+      "type_code": "long"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "6769d9be43aa8a9b91c1a898"
+  },
+  "name": "horari_classes_inscrits",
+  "auto": {
+    "field_names": [
+      "id",
+      "id"
+    ],
+    "seq": 0
+  },
+  "fields": {
+    "horari_classes_id": {
+      "type_code": "objectId"
+    },
+    "id": {
+      "type_code": "long"
+    },
+    "user_id": {
+      "type_code": "long"
+    }
+  }
+}]

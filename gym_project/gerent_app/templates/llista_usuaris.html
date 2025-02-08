@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>Usuaris</h1>
+    <form method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="c" value="{{ cerca }}" placeholder="Cerca usuaris..." class="form-control flex-grow-1">
+            <button type="submit" class="btn btn-dark">Cerca</button>
+        </div>
+    </form>    
+    <table class = "table table-striped">
+        <thread>
+            <tr>
+                <th><a href="?ordenar=id">ID</a></th>
+                <th><a href="?ordenar=first_name">NOM</a></th>
+                <th><a href="?ordenar=last_name">COGNOMS</a></th>
+                <th><a href="?ordenar=email">EMAIL</a></th>
+                <th><a href="?ordenar=role">ROL</a></th>
+                <th><a href="?ordenar=username">NOM D'USUARI</a></th>
+            </tr>
+        </thread>
+        <thbody>
+            {% for usuari in pag_obj %}
+                <tr>
+                    <td>{{ usuari.id }}</td>
+                    <td>{{ usuari.first_name }}</td>
+                    <td>{{ usuari.last_name }}</td>
+                    <td>{{ usuari.email }}</td>
+                    <td>{{ usuari.role }}</td>
+                    <td>{{ usuari.username }}</td>
+                </tr>
+            {% endfor %}
+        </thbody>
+    </table>
+    <div class="pagination">
+        <nav aria-label="Paginació">
+            <ul class="pagination justify-content-center bg-dark text-white">
+                {% if pag_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?pagina=1" aria-label="Primer">Primer</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?pagina={{ pag_obj.previous_page_number }}" aria-label="Anterior">Anterior</a>
+                    </li>
+                {% endif %}
+        
+                <li class="page-item disabled">
+                    <span class="page-link">Pàgina {{ pag_obj.number }} de {{ pag_obj.paginator.num_pages }}</span>
+                </li>
+        
+                {% if pag_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?pagina={{ pag_obj.next_page_number }}" aria-label="Següent">Següent</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?pagina={{ pag_obj.paginator.num_pages }}" aria-label="Últim">Últim</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <h1>Usuaris</h1><br>
+    <table class = "table table-striped">
+        <thread>
+            <tr>
+                <th>NOM</th>
+                <th>COGNOMS</th>
+                <th>EMAIL</th>
+                <th>NOM D'USUARI</th>
+                <th>ROL</th>
+                <th>ACCIONS</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thread>
+        <thbody>
+            {% for usuari in pag_obj %}
+                <tr>
+                    <td>{{ usuari.first_name }}</td>
+                    <td>{{ usuari.last_name }}</td>
+                    <td>{{ usuari.email }}</td>
+                    <td>{{ usuari.username }}</td>
+                    <td>{{ usuari.role }}</td>
+                    <td>
+                        <a href="{% url 'admin_app:editar_usuari' usuari.id %}" class="btn btn-outline-info">Edita</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'admin_app:eliminar_usuari' usuari.id %}" class="btn btn-outline-danger">Eliminar</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'admin_app:previsualitzar_usuari' usuari.id %}" class="btn btn-outline-success">Previsualitzar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </thbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'admin_app:crear_usuari' %}" class="btn btn-dark">Afegir nou usuari</a>
+    </div>
+    <div class="pagination">
+        <nav aria-label="Paginació">
+            <ul class="pagination justify-content-center">
+                {% if pag_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?pagina=1" aria-label="Primer">Primer</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?pagina={{ pag_obj.previous_page_number }}" aria-label="Anterior">Anterior</a>
+                    </li>
+                {% endif %}
+        
+                <li class="page-item disabled">
+                    <span class="page-link">Pàgina {{ pag_obj.number }} de {{ pag_obj.paginator.num_pages }}</span>
+                </li>
+        
+                {% if pag_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?pagina={{ pag_obj.next_page_number }}" aria-label="Següent">Següent</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?pagina={{ pag_obj.paginator.num_pages }}" aria-label="Últim">Últim</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    
+{% endblock %}

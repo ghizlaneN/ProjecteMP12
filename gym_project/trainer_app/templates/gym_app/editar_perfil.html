@@ -1,15 +1,45 @@
-<!-- Herència de la plantilla base.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-  <!-- Títol de la pàgina -->
-  <h2>Editar perfil</h2>
-  <!-- Formulari per actualitzar el perfil -->
-  <form method="POST">
-    {% csrf_token %}
-    <!-- Mostra els camps del formulari -->
-    {{ form.as_p }}
-    <!-- Botó per enviar el formulari -->
-    <button class="btn btn-dark" type="submit">Actualitzar perfil</button>
-  </form>
+<section class="vh-50">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-1 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Phone image">
+      </div>
+      <div class="col-md-57 col-lg-5 col-xl-5 offset-xl-1">
+        <h2 class="mt-1 mb-5 pb-1">Editar perfil</h2>
+        <form method="POST">
+          {% csrf_token %}
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="text" id="first_name" class="form-control form-control-lg" value="{{ form.username.value }}" />
+            <label class="form-label" for="first_name">Usuari</label>
+          </div>
+          
+          <!-- Camp per el nom -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="text" id="first_name" class="form-control form-control-lg" value="{{ form.first_name.value }}" />
+            <label class="form-label" for="first_name">Nom</label>
+          </div>
+          
+          <!-- Camp per el ocgnom -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="text" id="last_name" class="form-control form-control-lg" value="{{ form.last_name.value }}" />
+            <label class="form-label" for="last_name">Cognom</label>
+          </div>
+
+          <!-- Camp per el email -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="email" id="email" class="form-control form-control-lg" value="{{ form.email.value }}" />
+            <label class="form-label" for="email">Email</label>
+          </div>
+
+          <!-- Botó per enviar el formulari -->
+          <button class="btn btn-dark btn-lg btn-block" type="submit">Actualizar perfil</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

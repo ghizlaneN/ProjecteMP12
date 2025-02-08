@@ -4,9 +4,8 @@
 {% block content %}
 <div class="home">
     <!-- Títol de la pàgina -->
-    <h1>Benvingut al Gimnàs</h1>
-    <!-- Condicional per mostrar missatges diferents segons si l'usuari està autenticat o no -->
-    {% if user.is_authenticated %}
+    <h1>Benvingut al Gimnàs</h1>       
+
         <!-- Si l'usuari està autenticat, mostra el seu nom d'usuari -->
         <p>Hola, {{ user.username }}!</p>
     {% else %}

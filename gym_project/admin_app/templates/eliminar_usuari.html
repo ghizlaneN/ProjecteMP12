@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ usuari.first_name }} {{ usuari.last_name }}</h2>
+<p>Username: {{ usuari.username}}</p>
+<p>Email: {{ usuari.email }}</p>
+<p>Rol: {{ usuari.role }}</p>
+
+<div class="alert alert-warning" role="alert">
+    Aquesta acció eliminarà definitivament l'usuari i tots els seus registres relacionats. Confirma que vols eliminar aquest usuari?
+</div>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">Sí, eliminar</button>
+    <a href="{% url 'admin_app:llistar_usuaris' %}" class="btn btn-outline-secondary">Cancelar</a>
+  </form>
+{% endblock %}

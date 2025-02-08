@@ -30,9 +30,6 @@
         <ul class="navbar-nav flex-row ml-auto">
             <!-- Condicional per a mostrar opcions diferents segons si l'usuari està autenticat o no. -->
             {% if user.is_authenticated %}
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{% url 'home' %}">Inici</a>
-                </li>
 
 
                 {% if user.is_authenticated and user.role == 'trainer' %}
@@ -53,7 +50,18 @@
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="{% url 'user:quota' %}">Quota</a>
                     </li>
-
+                    
+                {% elif user.is_authenticated and user.role == 'admin' %}
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'admin_app:llistar_usuaris' %}">Llistar Usuaris</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'admin_app:crear_usuari' %}">Crear Usuari</a>
+                </li>
+                {% elif user.is_authenticated and user.role == 'director' %}
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{% url 'gerent_app:llista_usuaris' %}">Llistar Classes</a>
+                </li>
                 {% endif %}
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{% url 'editar_perfil' %}">Editar perfil</a>
@@ -61,13 +69,7 @@
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{% url 'logout' %}">Tancar Sessió</a>
                 </li>
-            {% else %}
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{% url 'login' %}">Iniciar Sessió</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{% url 'register' %}">Registrar-se</a>
-                </li>
+               
             {% endif %}
 
         </ul>

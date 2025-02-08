@@ -19,9 +19,11 @@ from django.urls import path, include
 
 urlpatterns = [
     # Afegim la URL de l'administrador al fitxer urls.py
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     # Afegim la URL de l'aplicació 'gym_app' al fitxer urls.py
     path('', include('gym_app.urls')),
      path('trainer/', include('trainer_app.urls')),
      path('user/',include('user_app.urls')),
+     path('admin_app/', include('admin_app.urls')),
+     path('gerent_app/', include('gerent_app.urls')),
 ]

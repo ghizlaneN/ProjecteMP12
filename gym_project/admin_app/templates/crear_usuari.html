@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<section class="vh-50">
+  <div class="container py-3 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <style>
+            .divider:after,
+            .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+            }
+        </style>
+        <form method="post">
+          <h2 class="mt-1 mb-5 pb-1 text-center">Registrar Usuari</h2>
+          {% csrf_token %}
+        
+          {% for field in form %}
+          <div class="form-outline mb-4">
+              {% if field.field.widget.input_type == 'select' %}
+                  {{ field|add_class:"form-select form-control border-dark bg-transparent" }}
+
+              {% else %}
+                  {{ field|add_class:"form-control" }}
+              {% endif %}
+              <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {% for error in field.errors %}
+              <div class="alert alert-danger mt-2">{{ error }}</div>
+              {% endfor %}
+          </div>
+          {% endfor %}
+        
+          <button type="submit" class="btn btn-dark btn-lg btn-block">Registrar</button>
+        
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
